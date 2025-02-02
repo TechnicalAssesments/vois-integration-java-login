@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: joeDBornotDB
+      MYSQL_DATABASE: userDB
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./create-db.sql:/docker-entrypoint-initdb.d/create-db.sql
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
+
